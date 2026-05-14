@@ -6,6 +6,15 @@
 - `wiki/`: LLM 维护的 Markdown 知识层，用于摘要、概念、实体、综合分析和查询沉淀。
 - `AGENTS.md`: 给 Codex/其他代理的操作规则，确保每次摄入、查询、维护都有一致流程。
 
+架构图、图例和目录职责见 [docs/architecture.md](docs/architecture.md)。
+
+## 架构速览
+
+```text
+External Sources -> raw/ -> LLM agent -> wiki/ -> MOC/indexes
+                         GitHub <---- git sync ---->
+```
+
 ## 快速开始
 
 1. 把文章、PDF 转写、会议纪要、网页剪藏或其他资料放到 `raw/`。
@@ -37,6 +46,7 @@ python3 tools/wiki.py new-source raw/article.md --title "Article Title" --kind a
 - `wiki/synthesis/`: 跨来源综合、论文式分析、长期判断。
 - `wiki/queries/`: 值得沉淀的问答和一次性研究结果。
 - `wiki/questions.md`: 开放问题、待验证假设、需要补充资料的空白。
+- `docs/architecture.md`: 架构图、图例、流程说明和目录职责。
 
 ## 推荐工作流
 

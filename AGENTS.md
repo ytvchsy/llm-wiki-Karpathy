@@ -8,6 +8,7 @@ You are maintaining an LLM-owned Markdown wiki. Treat this repository as a knowl
 - `wiki/` contains the maintained knowledge layer. You may create, rewrite, split, merge, and cross-link these pages.
 - `wiki/index.md` is the content catalog. Update it after every meaningful wiki change.
 - `wiki/log.md` is append-only chronological history. Append an entry after every ingest, query synthesis, lint pass, or structural change.
+- `docs/architecture.md` contains the architecture diagram, legend, flow meanings, and directory responsibilities. Update it when the topology or directory contract changes.
 - `tools/wiki.py` provides helper commands for indexing, search, backlinks, logging, source scaffolding, and linting.
 
 ## Page Conventions
