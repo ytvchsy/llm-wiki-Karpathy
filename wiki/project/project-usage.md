@@ -65,3 +65,18 @@ git add -A
 git commit -m "Update project wiki"
 git push
 ```
+
+## Cloud Publish
+
+On the cloud server, after Hermes/OpenClaw finishes a development task and updates wiki pages:
+
+```bash
+scripts/wiki_commit_push.sh "Update project wiki after Hermes development"
+```
+
+On the local Mac, pull the latest docs before opening Obsidian:
+
+```bash
+cd /Users/totus/data/llm-wiki
+git pull
+```

@@ -13,6 +13,8 @@ You are maintaining an LLM-owned Markdown wiki. Treat this repository as a knowl
 - `raw/feishu/` contains Feishu document sync output. Treat it as immutable source material.
 - `tools/wiki.py` provides helper commands for indexing, search, backlinks, logging, source scaffolding, and linting.
 - `tools/feishu_sync.py` fetches Feishu docx raw content into `raw/feishu/`.
+- `docs/cloud-deployment.md` describes the cloud deployment model for Hermes/OpenClaw, GitHub sync, and local Obsidian pull.
+- `scripts/wiki_commit_push.sh` is the preferred cloud-side publish command after wiki updates.
 
 ## Page Conventions
 
@@ -74,6 +76,17 @@ After every meaningful Hermes/OpenClaw development task:
 9. Append to `wiki/log.md`.
 
 Do not leave development knowledge only in chat or commit messages.
+
+## Cloud Deployment Workflow
+
+When working on the cloud server:
+
+1. Pull before editing: `git pull --rebase`.
+2. Run Hermes/OpenClaw development in its own project workspace, not inside this wiki unless explicitly intended.
+3. Write durable project knowledge into `wiki/project/`.
+4. Use `scripts/wiki_commit_push.sh "<message>"` to index, lint, commit, and push.
+5. Do not commit `.env`, SSH keys, API tokens, generated caches, or Hermes runtime state.
+6. Record deployment topology changes in `docs/cloud-deployment.md` and `docs/architecture.md`.
 
 ## Feishu Workflow
 

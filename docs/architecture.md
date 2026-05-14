@@ -1,11 +1,11 @@
 # Hermes + Obsidian + LLM Wiki Knowledge Base
 
-双环境知识管理系统：飞书/代码/资料采集 + Hermes/OpenClaw/LLM 脱水整理 + Obsidian 本地知识图谱。
+双环境知识管理系统：云端飞书/代码/资料采集 + Hermes/OpenClaw/LLM 脱水整理 + 本地 Obsidian 知识图谱。
 
 ## 架构
 
 ```text
- External / Cloud Sources              Local Workspace
+ External / Cloud Sources              Cloud Server                         Local Mac
 
 ┌─────────────────────────┐       push raw       ┌─────────────────────────┐
 │ Feishu / Code / Web     │ ───────────────────▶ │ raw/                    │
@@ -20,16 +20,10 @@
                                                      └──────────┬──────────┘
                                                                 │ compile
                                                                 ▼
-┌─────────────────────────┐       git pull       ┌─────────────────────────┐
-│ GitHub                  │ ◀──────────────────▶ │ wiki/                   │
-│ sync + history          │       git push        │ maintained knowledge   │
-└─────────────────────────┘                      └────────────┬────────────┘
-                                                               │ index
-                                                               ▼
-                                                     ┌─────────────────────┐
-                                                     │ Obsidian / MOC      │
-                                                     │ index, log, graph   │
-                                                     └─────────────────────┘
+┌─────────────────────────┐       git push       ┌─────────────────────────┐       git pull       ┌─────────────────────┐
+│ GitHub                  │ ◀─────────────────── │ wiki/                   │ ───────────────────▶ │ Obsidian / MOC      │
+│ sync + history          │                      │ maintained knowledge   │                      │ index, log, graph   │
+└─────────────────────────┘                      └─────────────────────────┘                      └─────────────────────┘
 ```
 
 ## 图例
@@ -55,6 +49,7 @@
 | `index` | 重建索引、记录日志、检查链接健康 | `python3 tools/wiki.py index`、`python3 tools/wiki.py lint` |
 | `git push` | 推送本地 wiki 演化历史到 GitHub | `git push` |
 | `git pull` | 从远端同步其他机器或自动化任务的更新 | `git pull` |
+| `cloud publish` | 云端完成 Hermes/OpenClaw 开发后发布 wiki 更新 | `scripts/wiki_commit_push.sh "message"` |
 
 ## 目录说明
 
@@ -71,6 +66,7 @@
 | `wiki/log.md` | 追加式操作日志，用于审计 wiki 的演化。 |
 | `wiki/questions.md` | 待验证假设、资料缺口、冲突和后续研究问题。 |
 | `tools/wiki.py` | 本地维护工具：索引、搜索、lint、日志、来源页脚手架。 |
+| `scripts/wiki_commit_push.sh` | 云端发布脚本：pull、index、lint、commit、push。 |
 
 ## 维护规则
 

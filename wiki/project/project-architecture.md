@@ -23,12 +23,13 @@ It does not replace the Hermes/OpenClaw code repository. Instead, it records pro
 | Component | Responsibility |
 | --- | --- |
 | Feishu | Collaborative documents, meetings, requirements, and team discussion records |
+| Cloud server | Runs Hermes/OpenClaw, Feishu sync, and wiki update automation |
 | `tools/feishu_sync.py` | Pull Feishu docx raw content into `raw/feishu/` |
 | `raw/` | Immutable source material |
 | Hermes/OpenClaw | Development agent or project code workflow |
 | LLM/Codex | Ingest raw material and maintain wiki pages |
 | `wiki/project/` | Project-facing docs: progress, features, architecture, usage, decisions |
-| Obsidian | Local browsing, backlinks, graph view |
+| Obsidian | Local Mac browsing, backlinks, graph view |
 | GitHub | Remote history, sync, backup |
 
 ## Data Flow
@@ -37,7 +38,7 @@ It does not replace the Hermes/OpenClaw code repository. Instead, it records pro
 Feishu docx -> tools/feishu_sync.py -> raw/feishu/*.md
 raw/feishu/*.md -> LLM ingest -> wiki/project/*.md
 Hermes/OpenClaw development -> LLM summary -> wiki/project/*.md
-wiki updates -> tools/wiki.py index/lint -> git push -> GitHub
+wiki updates -> tools/wiki.py index/lint -> git push -> GitHub -> local git pull -> Obsidian
 ```
 
 ## Integration Points

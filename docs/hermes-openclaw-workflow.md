@@ -2,6 +2,8 @@
 
 本仓库把 Hermes/OpenClaw 开发过程纳入 wiki：代码可以在项目仓库里演进，项目知识在本仓库里沉淀。
 
+云服务器部署和同步方式见 [cloud-deployment.md](cloud-deployment.md)。
+
 ## 工作模型
 
 ```text
@@ -65,4 +67,10 @@ python3 tools/wiki.py lint
 
 ```bash
 python3 -m py_compile tools/feishu_sync.py
+```
+
+云端开发完成后推荐直接执行：
+
+```bash
+scripts/wiki_commit_push.sh "Update wiki after Hermes development"
 ```

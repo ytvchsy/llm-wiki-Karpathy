@@ -26,19 +26,21 @@ Current build status for the Hermes + Obsidian + LLM wiki system.
 - Obsidian-friendly `raw/` and `wiki/` structure created.
 - GitHub repository created and pushed.
 - Architecture legend documentation added.
+- Feishu sync workflow and project documentation layer added.
 
 ## In Progress
 
-- Feishu ingestion workflow and project documentation model.
-- Hermes/OpenClaw development documentation contract.
+- Cloud deployment workflow for Hermes/OpenClaw and GitHub-to-Obsidian sync.
 
 ## Blocked
 
 - Real Feishu credentials and document URLs are not configured yet.
 - Hermes/OpenClaw project repository path is not linked yet.
+- Cloud server host, user, and runtime installation details are not configured yet.
 
 ## Next
 
 - Configure `.env` with Feishu app credentials.
 - Run a first Feishu document sync into `raw/feishu/`.
 - Add the actual Hermes/OpenClaw code repository path and development commands.
+- Deploy the wiki and Hermes/OpenClaw runtime to the target cloud server.

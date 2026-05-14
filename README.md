@@ -11,6 +11,7 @@
 架构图、图例和目录职责见 [docs/architecture.md](docs/architecture.md)。
 飞书接入见 [docs/feishu-integration.md](docs/feishu-integration.md)。
 Hermes/OpenClaw 开发文档流见 [docs/hermes-openclaw-workflow.md](docs/hermes-openclaw-workflow.md)。
+云服务器部署见 [docs/cloud-deployment.md](docs/cloud-deployment.md)。
 
 ## 架构速览
 
@@ -57,6 +58,8 @@ python3 tools/feishu_sync.py fetch "https://example.feishu.cn/docx/xxxx" --title
 - `docs/architecture.md`: 架构图、图例、流程说明和目录职责。
 - `docs/feishu-integration.md`: 飞书自建应用接入、同步和摄入流程。
 - `docs/hermes-openclaw-workflow.md`: Hermes/OpenClaw 开发后如何更新 wiki。
+- `docs/cloud-deployment.md`: 云服务器部署、Hermes/OpenClaw 部署和本地 Obsidian 同步方案。
+- `scripts/wiki_commit_push.sh`: 云端更新 wiki 后的一键 index、lint、commit、push 脚本。
 
 ## 推荐工作流
 
@@ -82,6 +85,12 @@ python3 tools/feishu_sync.py fetch "https://example.feishu.cn/docx/xxxx" --title
 
 ```text
 本次 Hermes/OpenClaw 开发完成后，请更新 wiki/project/project-progress.md、project-features.md、project-architecture.md、project-usage.md、project-decisions.md，并运行 index/lint。
+```
+
+### 云端提交同步
+
+```bash
+scripts/wiki_commit_push.sh "Update project wiki"
 ```
 
 ### 健康检查
