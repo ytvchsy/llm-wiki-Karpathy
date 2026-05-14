@@ -152,6 +152,7 @@ def command_index(_: argparse.Namespace) -> int:
     pages = load_pages()
     groups = [
         ("Overview", {"overview"}),
+        ("Project", {"project", "progress", "feature", "architecture", "usage", "decision"}),
         ("Sources", {"source"}),
         ("Concepts", {"concept"}),
         ("Entities", {"entity"}),
@@ -374,7 +375,18 @@ def command_lint(_: argparse.Namespace) -> int:
         fm = parse_frontmatter(text)
         if not fm:
             issues.append(f"missing frontmatter: {page.rel}")
-        if page.page_type not in {"overview", "note", "query"} and not page.sources:
+        source_optional_types = {
+            "overview",
+            "note",
+            "query",
+            "project",
+            "progress",
+            "feature",
+            "architecture",
+            "usage",
+            "decision",
+        }
+        if page.page_type not in source_optional_types and not page.sources:
             issues.append(f"missing sources: {page.rel}")
         for source in page.sources:
             source_path = ROOT / source

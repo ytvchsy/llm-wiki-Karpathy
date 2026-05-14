@@ -11,3 +11,6 @@ search:
 
 log:
 	python3 tools/wiki.py log "$(kind)" "$(title)" --body "$(body)"
+
+feishu:
+	python3 tools/feishu_sync.py fetch "$(url)" --title "$(title)"

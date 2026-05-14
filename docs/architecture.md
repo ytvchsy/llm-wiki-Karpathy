@@ -1,6 +1,6 @@
-# LLM Wiki Knowledge Base
+# Hermes + Obsidian + LLM Wiki Knowledge Base
 
-双环境知识管理系统：外部来源采集 + 本地 LLM 脱水整理引擎。
+双环境知识管理系统：飞书/代码/资料采集 + Hermes/OpenClaw/LLM 脱水整理 + Obsidian 本地知识图谱。
 
 ## 架构
 
@@ -8,12 +8,13 @@
  External / Cloud Sources              Local Workspace
 
 ┌─────────────────────────┐       push raw       ┌─────────────────────────┐
-│ Feishu / Discord / Web  │ ───────────────────▶ │ raw/                    │
+│ Feishu / Code / Web     │ ───────────────────▶ │ raw/                    │
 │ papers / notes / chats  │                      │ immutable source layer  │
 └─────────────────────────┘                      └────────────┬────────────┘
                                                                │ ingest
                                                                ▼
                                                      ┌─────────────────────┐
+                                                     │ Hermes / OpenClaw   │
                                                      │ LLM agent / Codex   │
                                                      │ dehydration engine  │
                                                      └──────────┬──────────┘
@@ -26,7 +27,7 @@
                                                                │ index
                                                                ▼
                                                      ┌─────────────────────┐
-                                                     │ MOC / indexes       │
+                                                     │ Obsidian / MOC      │
                                                      │ index, log, graph   │
                                                      └─────────────────────┘
 ```
@@ -37,11 +38,11 @@
 
 | 节点 | 含义 | 是否由 LLM 修改 |
 | --- | --- | --- |
-| External / Cloud Sources | 飞书、Discord、网页、论文、聊天记录、手工笔记等外部资料入口 | 否 |
+| External / Cloud Sources | 飞书、代码仓库、Discord、网页、论文、聊天记录、手工笔记等外部资料入口 | 否 |
 | `raw/` | 原始事实层，保留未加工资料和附件 | 默认否 |
-| LLM agent / Codex | 执行摄入、摘要、交叉链接、去重、矛盾检查的脱水引擎 | 是 |
+| Hermes / OpenClaw / LLM agent | 执行开发、摄入、摘要、交叉链接、去重、矛盾检查的脱水引擎 | 是 |
 | `wiki/` | 由 LLM 维护的 Markdown 知识层 | 是 |
-| MOC / indexes | Map of Content、索引、日志、图谱入口 | 是 |
+| Obsidian / MOC / indexes | Obsidian vault、Map of Content、索引、日志、图谱入口 | 是 |
 | GitHub | 远端备份、同步、版本历史和审计轨迹 | 通过 git 同步 |
 
 ### 流程

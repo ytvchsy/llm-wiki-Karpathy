@@ -9,7 +9,10 @@ You are maintaining an LLM-owned Markdown wiki. Treat this repository as a knowl
 - `wiki/index.md` is the content catalog. Update it after every meaningful wiki change.
 - `wiki/log.md` is append-only chronological history. Append an entry after every ingest, query synthesis, lint pass, or structural change.
 - `docs/architecture.md` contains the architecture diagram, legend, flow meanings, and directory responsibilities. Update it when the topology or directory contract changes.
+- `wiki/project/` contains durable project documentation for Hermes/OpenClaw development: progress, features, architecture, usage, and decisions.
+- `raw/feishu/` contains Feishu document sync output. Treat it as immutable source material.
 - `tools/wiki.py` provides helper commands for indexing, search, backlinks, logging, source scaffolding, and linting.
+- `tools/feishu_sync.py` fetches Feishu docx raw content into `raw/feishu/`.
 
 ## Page Conventions
 
@@ -55,6 +58,33 @@ When the user asks you to ingest a source:
 9. Append a log entry with `python3 tools/wiki.py log ingest "<title>" --body "..."`
 
 Prefer ingesting one source carefully over batch ingestion when the source is dense.
+
+## Hermes/OpenClaw Development Documentation Workflow
+
+After every meaningful Hermes/OpenClaw development task:
+
+1. Update `wiki/project/project-progress.md` with what changed, current status, blockers, and next steps.
+2. Update `wiki/project/project-features.md` for new or changed functionality.
+3. Update `wiki/project/project-architecture.md` for system boundary, component, data-flow, or integration changes.
+4. Update `wiki/project/project-usage.md` for commands, configuration, and operator-facing instructions.
+5. Update `wiki/project/project-decisions.md` for important tradeoffs or irreversible decisions.
+6. Update `docs/architecture.md` when the overall topology changes.
+7. Run `python3 tools/wiki.py index`.
+8. Run `python3 tools/wiki.py lint`.
+9. Append to `wiki/log.md`.
+
+Do not leave development knowledge only in chat or commit messages.
+
+## Feishu Workflow
+
+When ingesting Feishu material:
+
+1. Use `python3 tools/feishu_sync.py fetch "<doc-url>" --title "<title>"` when credentials are configured.
+2. Treat the generated `raw/feishu/*.md` file as immutable source material.
+3. Create or update a source page in `wiki/sources/`.
+4. Move stable project knowledge into `wiki/project/`.
+5. Record uncertainty, missing credentials, or permission problems in `wiki/questions.md`.
+6. Update index, lint, log, then commit.
 
 ## Query Workflow
 
